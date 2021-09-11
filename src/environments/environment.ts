@@ -5,7 +5,8 @@ import { SEC_INFO } from './environment.sec';
 export const environment = {
   production: false,
   hmr: false,
-  host: 'http://54.69.39.96/api/v1',
+  backendDebug: false,
+  host: 'http://dev.portal.sos.io:8080/api/v1',
   googleApiKey: SEC_INFO.GOOGLE_MAP_API_KEY,
   s3: {
     AccessKeyId: SEC_INFO.S3_ACCESS_KEY,

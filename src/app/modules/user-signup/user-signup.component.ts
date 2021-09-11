@@ -5,6 +5,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-signup',
@@ -101,7 +102,8 @@ export class UserSignupComponent implements OnInit {
   AccountSetupSubmit(user: IUser) {
     this.UsersService.create({
       phone_number: user.phone_number,
-      password: user.password
+      password: user.password,
+      debug: environment.backendDebug
     }, {}
     ).subscribe(
       (result) => {
