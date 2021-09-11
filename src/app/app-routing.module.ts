@@ -22,6 +22,19 @@ const routes: Routes = [
   {
     path: '',
     component: ContainerComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () =>
+          import('./modules/urgent-request/urgent-request.module').then(
+            (m) => m.UrgentRequestModule
+          ),
+      },
+    ]
+  },
+  {
+    path: '',
+    component: ContainerComponent,
     canActivate: [AuthGuard],
     children: [
       // { path: '', redirectTo: 'news', pathMatch: 'full' },

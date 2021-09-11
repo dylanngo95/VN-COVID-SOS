@@ -45,19 +45,19 @@ export class UserSignupComponent implements OnInit {
       address: [''],
       last_name: ['']
     });
-    }
-    onClose() {
-      this.dialogRef.close();
-    }
-    password(formGroup: FormGroup) {
-      const password = formGroup.get('password')?.value;
-      const confirmPassword = formGroup.get('confirm_password')?.value;
-      return password === confirmPassword ? null : { passwordNotMatch: true };
-    }
-    getError(el: any) {
-      switch (el) {
-        case 'phone':
-          if (this.firstFormGroup.get('phone_number')?.hasError('required')) {
+  }
+  onClose() {
+    this.dialogRef.close();
+  }
+  password(formGroup: FormGroup) {
+    const password = formGroup.get('password')?.value;
+    const confirmPassword = formGroup.get('confirm_password')?.value;
+    return password === confirmPassword ? null : { passwordNotMatch: true };
+  }
+  getError(el: any) {
+    switch (el) {
+      case 'phone':
+        if (this.firstFormGroup.get('phone_number')?.hasError('required')) {
           return 'Yêu cầu nhập số điện thoại';
         }
         if (this.firstFormGroup.get('phone_number')?.hasError('minlength')) {
@@ -99,9 +99,11 @@ export class UserSignupComponent implements OnInit {
   }
 
   AccountSetupSubmit(user: IUser) {
-  
-
-    this.UsersService.create({ phone_number: user.phone_number, password: user.password, debug: "true" }, {}).subscribe(
+    this.UsersService.create({
+      phone_number: user.phone_number,
+      password: user.password
+    }, {}
+    ).subscribe(
       (result) => {
         console.log(result);
         this.user.phone_number = result.phone_number;
